@@ -1,4 +1,4 @@
-package com.github.powerttt;
+package com.github.powerttt.security02;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,10 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * >
  */
 @SpringBootApplication
-public class Secutity01Appliction {
+public class Security02Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Secutity01Appliction.class);
+        SpringApplication.run(Security02Application.class);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.github.powerttt.controller;
+package com.github.powerttt.security01.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
