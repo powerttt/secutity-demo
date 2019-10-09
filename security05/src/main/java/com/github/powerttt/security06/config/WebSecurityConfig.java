@@ -1,6 +1,6 @@
-package com.github.powerttt.security05.config;
+package com.github.powerttt.security06.config;
 
-import com.github.powerttt.security05.handler.LoginSuccessHandler;
+import com.github.powerttt.security06.handler.LoginSuccessHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

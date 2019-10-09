@@ -1,4 +1,4 @@
-package com.github.powerttt.security05.controller;
+package com.github.powerttt.security06.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
