@@ -1,4 +1,4 @@
-package com.github.powerttt.security06.handler;
+package com.github.powerttt.bean.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;

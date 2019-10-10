@@ -1,4 +1,4 @@
-package com.github.powerttt.security06.handler;
+package com.github.powerttt.bean.handler;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;

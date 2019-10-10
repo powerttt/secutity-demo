@@ -1,4 +1,4 @@
-package com.github.powerttt.security06.controller;
+package com.github.powerttt.bean.controller;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;

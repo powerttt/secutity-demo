@@ -1,4 +1,4 @@
-package com.github.powerttt.security06;
+package com.github.powerttt.bean;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

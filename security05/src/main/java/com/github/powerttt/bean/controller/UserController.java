@@ -1,6 +1,5 @@
-package com.github.powerttt.security06.controller;
+package com.github.powerttt.bean.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,6 @@ import java.security.Principal;
 public class UserController {
 
     @GetMapping("/user1")
-    @PreAuthorize("hasRole('TWO')")
     public Object user1(Principal principal){
         return principal;
     }

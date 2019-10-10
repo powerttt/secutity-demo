@@ -1,7 +1,8 @@
-package com.github.powerttt.security06;
+package com.github.powerttt.bean;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 /**
  * @Author tongning
@@ -11,10 +12,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * >
  */
 @SpringBootApplication
-public class Security05Application {
+public class MainConfig {
 
     public static void main(String[] args) {
-        SpringApplication.run(Security05Application.class);
+        SpringApplication.run(MainConfig.class);
+    }
+
+    @Bean
+    public User user(){
+        return new User();
     }
 
 }

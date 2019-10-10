@@ -1,7 +1,7 @@
-package com.github.powerttt.security06.config;
+package com.github.powerttt.bean.config;
 
-import com.github.powerttt.security06.handler.LoginSuccessHandler;
-import com.github.powerttt.security06.handler.RoleAccessHandler;
+import com.github.powerttt.bean.handler.LoginSuccessHandler;
+import com.github.powerttt.bean.handler.RoleAccessHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
