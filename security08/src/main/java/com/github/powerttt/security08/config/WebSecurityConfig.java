@@ -1,17 +1,19 @@
-package com.github.powerttt.security07.config;
+package com.github.powerttt.security08.config;
 
-import com.github.powerttt.security07.handler.LoginSuccessHandler;
-import com.github.powerttt.security07.handler.RoleAccessHandler;
-import org.springframework.context.annotation.Bean;
+import com.github.powerttt.security08.dao.SysUserDao;
+import com.github.powerttt.security08.handler.LoginSuccessHandler;
+import com.github.powerttt.security08.handler.RoleAccessHandler;
+import com.github.powerttt.security08.model.SysUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-
-import javax.sql.DataSource;
+import org.springframework.util.StringUtils;
 
 /**
  * @Author tongning
@@ -26,6 +28,9 @@ import javax.sql.DataSource;
  */
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private SysUserDao sysUserDao;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -53,15 +58,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * 注入security user工具类
-     * @param dataSource
+     * 自定义身份验证
+     * 登录验证方式和密码加密方式。
      * @return
      */
-    @Bean
-    public JdbcUserDetailsManager jdbcUserDetailsManager(DataSource dataSource){
-        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
-        jdbcUserDetailsManager.setDataSource(dataSource);
-        return jdbcUserDetailsManager;
+    @Override
+    protected UserDetailsService userDetailsService() {
+
+        return username -> {
+            if (StringUtils.isEmpty(username)) {
+                throw new UsernameNotFoundException("用户名为空");
+            }
+            SysUser sysUser = sysUserDao.getByUserName(username);
+            if (sysUser != null) {
+                return sysUser;
+            }
+            throw new UsernameNotFoundException("用户不存在!");
+        };
     }
 
+    /**
+     * 根据传递的自定义{@link UserDetailsService}添加身份验证 in。然后返回以允许自定义身份验证。
+     * @param auth
+     * @throws Exception
+     */
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService()).passwordEncoder(new BCryptPasswordEncoder());
+    }
 }
