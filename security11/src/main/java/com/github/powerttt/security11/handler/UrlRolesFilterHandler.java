@@ -27,6 +27,9 @@ public class UrlRolesFilterHandler implements FilterInvocationSecurityMetadataSo
 
     /**
      * 每次请求进来都会去查询此URL的角色，又增加一层查询
+     * 不会过滤URL白名单
+     * 无状态（匿名用户）下也会进入此处
+     * 对每个静态资源都会保护
      * @param o
      * @return
      * @throws IllegalArgumentException
@@ -34,7 +37,7 @@ public class UrlRolesFilterHandler implements FilterInvocationSecurityMetadataSo
     @Override
     public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException {
         String requestUrl = ((FilterInvocation) o).getRequestUrl();
-        List<String> roleNames = sysMenuDao.selectRoleNamesByUrl(requestUrl);
+       List<String> roleNames = sysMenuDao.selectRoleNamesByUrl(requestUrl);
 
         String[] names = new String[roleNames.size()];
         for (int i = 0; i < names.length; i++) {
