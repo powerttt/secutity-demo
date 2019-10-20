@@ -1,0 +1,33 @@
+package com.github.powerttt.security13.handler;
+
+import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/**
+ * @Author tongning
+ * @Date 2019/10/8 0008
+ * function:<
+ * <p>
+ * >
+ */
+public class LoginSuccessHandler implements AuthenticationSuccessHandler {
+
+    /**
+     * 登入成功处理
+     * 登入失败：AuthenticationFailureHandler
+     */
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+        // 获取登录成功信息
+        httpServletResponse.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+        httpServletResponse.getWriter().write("{\"code\": \"200\", \"msg\": \"登录成功\"}");
+    }
+
+
+}
